@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>チャンピオンデータのサイト群を同時に開く</title>
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+    var nameTable = {
+
+    };
+
+    function getAPIname(name, site) {
+      var champion_name
+      return champion_name;
+    }
+    $(function () {
+      var availableTags = [
+        "Aatrox",
+        "Ahri",
+        "Akali",
+        "Alistar",
+        "Amumu",
+        "Anivia",
+        "Annie",
+        "Ashe",
+        "AurelionSol",
+        "Azir",
+        "Bard",
+        "Blitzcrank",
+        "Brand",
+        "Braum",
+        "Caitlyn",
+        "Camille",
+        "Cassiopeia",
+        "Chogath",
+        "Corki",
+        "Darius",
+        "Diana",
+        "DrMundo",
+        "Draven",
+        "Ekko",
+        "Elise",
+        "Evelynn",
+        "Ezreal",
+        "FiddleSticks",
+        "Fiora",
+        "Fizz",
+        "Galio",
+        "Gangplank",
+        "Garen",
+        "Gnar",
+        "Gragas",
+        "Graves",
+        "Hecarim",
+        "Heimerdinger",
+        "Illaoi",
+        "Irelia",
+        "Ivern",
+        "Janna",
+        "JarvanIV",
+        "Jax",
+        "Jayce",
+        "Jhin",
+        "Jinx",
+        "Kalista",
+        "Karma",
+        "Karthus",
+        "Kassadin",
+        "Katarina",
+        "Kayle",
+        "Kennen",
+        "Khazix",
+        "Kindred",
+        "Kled",
+        "KogMaw",
+        "Leblanc",
+        "LeeSin",
+        "Leona",
+        "Lissandra",
+        "Lucian",
+        "Lulu",
+        "Lux",
+        "Malphite",
+        "Malzahar",
+        "Maokai",
+        "MasterYi",
+        "MissFortune",
+        "MonkeyKing",
+        "Mordekaiser",
+        "Morgana",
+        "Nami",
+        "Nasus",
+        "Nautilus",
+        "Nidalee",
+        "Nocturne",
+        "Nunu",
+        "Olaf",
+        "Orianna",
+        "Pantheon",
+        "Poppy",
+        "Quinn",
+        "Rammus",
+        "RekSai",
+        "Renekton",
+        "Rengar",
+        "Riven",
+        "Rumble",
+        "Ryze",
+        "Sejuani",
+        "Shaco",
+        "Shen",
+        "Shyvana",
+        "Singed",
+        "Sion",
+        "Sivir",
+        "Skarner",
+        "Sona",
+        "Soraka",
+        "Swain",
+        "Syndra",
+        "TahmKench",
+        "Taliyah",
+        "Talon",
+        "Taric",
+        "Teemo",
+        "Thresh",
+        "Tristana",
+        "Trundle",
+        "Tryndamere",
+        "TwistedFate",
+        "Twitch",
+        "Udyr",
+        "Urgot",
+        "Varus",
+        "Vayne",
+        "Veigar",
+        "Velkoz",
+        "Vi",
+        "Viktor",
+        "Vladimir",
+        "Volibear",
+        "Warwick",
+        "Xerath",
+        "XinZhao",
+        "Yasuo",
+        "Yorick",
+        "Zac",
+        "Zed",
+        "Ziggs",
+        "Zilean",
+        "Zyra"
+      ];
+      $("#tags").autocomplete({
+        source: availableTags
+      });
+    });
+    $(function () {
+      $('#open').on('click', function () {
+        window.open('https://jp.op.gg/champion/' + $('#tags').val(), '');
+        window.open('https://www.champion.gg/champion/' + $('#tags').val(), '');
+        window.open('http://www.probuilds.net/champions/details/' + $('#tags').val(), '');
+        // window.open('http://jp.op.gg/multi/query=' + $('#names').val().replace(/がロビーに参加しました/g,','),'');
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <div class="ui-widget">
+    <label for="tags">チャンピオン名: </label>
+    <input id="tags" placeholder="半角英字で入力">
+  </div>
+  <button id="open">ページを表示</button>
+  <h2>開かれるサイト</h2>
+  <ul>
+    <li>op.gg</li>
+    <li>champion.gg</li>
+    <li>probuilds.net</li>
+  </ul>
+</body>
+
+</html>
