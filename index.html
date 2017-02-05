@@ -18,6 +18,11 @@
       return champion_name;
     }
     $(function () {
+      var nameTable = 0;
+      $.getJSON("./champion_name_table.json", function(json){
+        console.log(json)
+      })
+      // JSON.parse("./champion_name_table.json");
       var availableTags = [
         "Aatrox",
         "Ahri",
@@ -163,7 +168,6 @@
         window.open('https://jp.op.gg/champion/' + $('#tags').val(), '');
         window.open('https://www.champion.gg/champion/' + $('#tags').val(), '');
         window.open('http://www.probuilds.net/champions/details/' + $('#tags').val(), '');
-        // window.open('http://jp.op.gg/multi/query=' + $('#names').val().replace(/がロビーに参加しました/g,','),'');
       });
     });
   </script>
