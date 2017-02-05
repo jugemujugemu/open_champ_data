@@ -5,7 +5,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>チャンピオンデータのサイト群を同時に開く</title>
-  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/start/jquery-ui.css">
+  <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+  <link rel="stylesheet" href="http://www.w3schools.com/lib/w3-theme-indigo.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script>
@@ -16,10 +18,12 @@
       $.getJSON("https://jugemujugemu.github.io/open_champ_data/champion_name_table.json", function (json) {
         // $.getJSON("./champion_name_table.json", function (json) {
         nameTable = json;
-        console.log(nameTable);
+        // console.log(nameTable);
         availableTags = Object.keys(nameTable);
         $("#tags").autocomplete({
-          source: availableTags
+          source: availableTags,
+          delay: 0,
+          autoFocus: true
         });
       });
 
@@ -27,27 +31,44 @@
         return nameTable[name]
       }
 
-      $('#open').on('click', function () {
+      function openSites() {
         var name = $('#tags').val();
         window.open('https://jp.op.gg/champion/' + getKeyName(name, ''), '');
         window.open('https://www.champion.gg/champion/' + getKeyName(name, ''), '');
         window.open('http://www.probuilds.net/champions/details/' + getKeyName(name, ''), '');
+      }
+
+      $('#open').on('click', function () {
+        openSites();
+      });
+      $('#tags').keypress(function (e) {
+        if (e.which == 13) {
+          openSites();
+          return false;
+        }
       });
     });
   </script>
 </head>
 
 <body>
+  <h2>データサイトをまとめて表示</h2>
   <div class="ui-widget">
-    <label for="tags">チャンピオン名: </label>
-    <input id="tags" placeholder="半角英字で入力">
+    <!--<label for="tags">チャンピオン名: </label>-->
+    <input id="tags" placeholder="チャンピオン名を入力">
+    <button id="open">ページを表示</button>
   </div>
-  <button id="open">ページを表示</button>
-  <h2>開かれるサイト</h2>
+  <br>
+  <h3>開かれるサイト</h3>
   <ul>
     <li>op.gg</li>
     <li>champion.gg</li>
     <li>probuilds.net</li>
+  </ul>
+  <h4>開きたいけどまだムリ</h4>
+  <ul>
+    <li>LoLJPWiki</li>
+    <li>LoLBuild.JP</li>
   </ul>
 </body>
 
