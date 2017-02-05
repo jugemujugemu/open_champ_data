@@ -10,21 +10,25 @@
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script>
     $(function () {
-      var nameTable = 0;
-      $.getJSON("./champion_name_table.json", function (json) {
-        nameTable = json
+      var nameTable = {};
+      var availableTags;
+
+      $.getJSON("https://jugemujugemu.github.io/open_champ_data/champion_name_table.json", function (json) {
+        // $.getJSON("./champion_name_table.json", function (json) {
+        nameTable = json;
+        console.log(nameTable);
+        availableTags = Object.keys(nameTable);
+        $("#tags").autocomplete({
+          source: availableTags
+        });
       });
 
       function getKeyName(name, site) {
         return nameTable[name]
       }
 
-      var availableTags = Object.keys(nameTable);
-      $("#tags").autocomplete({
-        source: availableTags
-      });
       $('#open').on('click', function () {
-        var name = ('#tags').val();
+        var name = $('#tags').val();
         window.open('https://jp.op.gg/champion/' + getKeyName(name, ''), '');
         window.open('https://www.champion.gg/champion/' + getKeyName(name, ''), '');
         window.open('http://www.probuilds.net/champions/details/' + getKeyName(name, ''), '');
