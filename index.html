@@ -15,15 +15,18 @@
       var nameTable = {};
       var availableTags;
 
-      $.getJSON("https://jugemujugemu.github.io/open_champ_data/champion_name_table.json", function (json) {
-        // $.getJSON("./champion_name_table.json", function (json) {
-        nameTable = json;
-        // console.log(nameTable);
-        availableTags = Object.keys(nameTable);
-        $("#tags").autocomplete({
-          source: availableTags,
-          delay: 0,
-          autoFocus: true
+      $.getJSON("./ja2key.json", function (json_ja) {
+        $.getJSON("./en2key.json", function (json_en) {
+          nameTable = json_ja;
+          Object.assign(nameTable, json_en);
+          // console.log(nameTable);
+          // console.log(typeof (nameTable));
+          availableTags = Object.keys(nameTable);
+          $("#tags").autocomplete({
+            source: availableTags,
+            delay: 0,
+            autoFocus: true
+          });
         });
       });
 
